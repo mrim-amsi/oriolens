@@ -115,6 +115,14 @@
                       </div>
                       <span>Settings</span>
                     </a>
+                    <a href="#security" class="sidebar-link" data-section="security">
+                      <div class="sidebar-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 2.18l7 3.5V11c0 4.52-2.98 8.69-7 9.83-4.02-1.14-7-5.31-7-9.83V6.68l7-3.5zm3.5 8.32L11 10.5v5.5H9v-6h4.5z"/>
+                        </svg>
+                      </div>
+                      <span>Security</span>
+                    </a>
                     <!-- <a href="#pay" class="sidebar-link" data-section="pay">
                       <div class="sidebar-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
@@ -264,35 +272,132 @@
 <div id="pay" class="dashboard-section">
                     <h2 class="section-title">General Settings pay</h2>
                     <div class="spacer-small"></div></div>
+                  <!-- Security Section -->
+                  <div id="security" class="dashboard-section">
+                    <h2 class="section-title">Security</h2>
+                    <!-- <div class="spacer-small"></div> -->
+                    <!-- <p style="color: #666; margin-bottom: 20px; font-size: 14px;">Changing your password and confirming your email are sensitive operations. Please enter your information carefully.</p> -->
+                    
+                    <form class="settings-form">
+                      <!-- Confirm Email Section -->
+                      <div style="background-color: #ffecbe; padding: 20px; border-radius: 8px;">
+                        <h3 style="margin-top: 0; margin-bottom: 20px; color: #333; font-size: 16px;">Confirm Email</h3>
+                        
+                        <div class="form-group">
+                          <label class="form-label">Email Address</label>
+                          <div style="display: flex; gap: 10px; align-items: center;">
+                            <input type="email" class="form-input w-input" value="user@example.com" id="security-email" style="flex: 1;">
+                            <span style="background-color: #ffcc00; color: #333; padding: 6px 12px; border-radius: 4px; font-size: 12px; white-space: nowrap;">Unverified</span>
+                          </div>
+                        </div>
+                        <div class="spacer-small"></div>
+                        
+                        <p style="color: #666; font-size: 13px; margin: 10px 0;">We will send a confirmation link to your email. Click on the link to verify your email address.</p>
+                        <button type="button" class="button w-button" style="background-color: #22c55e;">Send Verification Link</button>
+                      </div>
+                      <div class="spacer-large"></div>
+                      <!-- Change Password Section -->
+                      <div style="background-color: #ffecbe; padding: 20px; border-radius: 8px; margin-bottom: 30px;">
+                        <h3 style="margin-top: 0; margin-bottom: 20px; color: #333; font-size: 16px;">Change Password</h3>
+                        
+                        <div class="form-group">
+                          <label class="form-label">Current Password</label>
+                          <input type="password" class="form-input w-input" placeholder="Enter your current password" id="current-password">
+                        </div>
+                        <div class="spacer-small"></div>
+                        
+                        <div class="form-group">
+                          <label class="form-label">New Password</label>
+                          <input type="password" class="form-input w-input" placeholder="Enter your new password" id="new-password">
+                          <div style="margin-top: 10px; font-size: 12px; color: #666;">
+                            <p style="margin: 5px 0;">Password Strength Requirements:</p>
+                            <ul style="margin: 5px 0; padding-left: 20px;">
+                              <li>✓ At least 8 characters</li>
+                              <li>✓ At least one number</li>
+                              <li>✓ Upper and lowercase letters</li>
+                              <li>✓ At least one special character (!@#$)</li>
+                            </ul>
+                          </div>
+                        </div>
+                        <div class="spacer-small"></div>
+                        
+                        <div class="form-group">
+                          <label class="form-label">Confirm New Password</label>
+                          <input type="password" class="form-input w-input" placeholder="Re-enter your new password" id="confirm-password">
+                        </div>
+                        <div class="spacer-small"></div>
+                        
+                        <button type="button" class="button w-button" style="background-color: #ff6b6b;">Update Password</button>
+                      </div>
+
+                      
+                      
+                      
+                    </form>
+                  </div>
                   <!-- Settings Section -->
                   <div id="settings" class="dashboard-section">
                     <h2 class="section-title">General Settings</h2>
                     <div class="spacer-small"></div>
                     
                     <form class="settings-form">
-                      <div class="form-group">                  
-                      <div class="form-group">
+                      <!-- <div class="form-group">
                         <label class="form-label">Contact Email</label>
-                        <input type="email" class="form-input w-input" value="contact@bitejoy.com" id="contact-email">
+                        <div style="display: flex; flex-direction: column; gap: 10px;">
+                          <input type="email" class="form-input w-input" value="contact@bitejoy.com" id="contact-email">
+                          <button type="button" class="button" style="background-color: #22c55e; padding: 8px 16px; border-radius: 4px; color: white; border: none; cursor: pointer; font-size: 12px; width: 20%;">Verify</button>
+                        </div>                     
+                       </div> -->
+                      <div class="spacer-small"></div>
+
+                      <div class="form-group">
+                        <label class="form-label">Vorname</label>
+                        <input class="form-input w-input" maxlength="256" name="vorname" placeholder="First Name" type="text" id="vorname">
+                      </div>
+                      <div class="spacer-small"></div>
+
+                      <div class="form-group">
+                        <label class="form-label">Nachname</label>
+                        <input class="form-input w-input" maxlength="256" name="nachname" placeholder="Last Name" type="text" id="nachname">
+                      </div>
+                      <div class="spacer-small"></div>
+
+                      <div class="form-group">
+                        <label class="form-label">Straße, Hausnummer</label>
+                        <input class="form-input w-input" maxlength="256" name="strasse" placeholder="Street, House Number" type="text" id="strasse">
+                      </div>
+                      <div class="spacer-small"></div>
+
+                      <div class="form-group">
+                        <label class="form-label">PLZ, Ort</label>
+                        <input class="form-input w-input" maxlength="256" name="plz" placeholder="ZIP Code, City" type="text" id="plz">
+                      </div>
+                      <div class="spacer-small"></div>
+
+                      <div class="form-group">
+                        <label class="form-label">Geburtsdatum</label>
+                        <input class="form-input w-input" name="geburtsdatum" type="date" id="geburtsdatum">
+                      </div>
+                      <div class="spacer-small"></div>
+
+                      <div class="form-group">
+                        <label class="form-label">Mobil</label>
+                        <input class="form-input w-input" maxlength="256" name="mobil" placeholder="Mobile Number" type="tel" id="mobil">
+                      </div>
+                      <div class="spacer-small"></div>
+
+                      <div class="form-group">
+                        <label class="form-label">Telefon (Optional)</label>
+                        <input class="form-input w-input" maxlength="256" name="telefon" placeholder="Phone Number (Optional)" type="tel" id="telefon">
                       </div>
                       <div class="spacer-small"></div>
                       
                       <div class="form-group">
-                        <label class="form-label">Phone Number</label>
-                        <input type="tel" class="form-input w-input" value="+199 999 - 9999" id="phone-number">
+                        <label class="form-label">Password</label>
+                        <input type="password" class="form-input w-input" placeholder="Enter your password" id="password">
                       </div>
-                      <div class="spacer-small"></div>
                       
-                      <div class="form-group">
-                        <label class="form-label">Address</label>
-                        <input type="text" class="form-input w-input" value="123 Main Street, City, Country" id="address">
-                      </div>
-                      <div class="spacer-small"></div>
-                      
-                      <div class="form-group">
-                        <label class="form-label">Opening Hours</label>
-                        <input type="text" class="form-input w-input" value="10:00 AM - 10:00 PM" id="opening-hours">
-                      </div>
+
                       <div class="spacer-large"></div>
                       
                       <button type="submit" class="button w-button">Save Settings</button>
