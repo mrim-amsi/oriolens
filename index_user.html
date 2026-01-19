@@ -86,7 +86,7 @@
             <div class="padding-section-small">
               <div class="dashboard-layout">
                 <!-- Sidebar Navigation -->
-                <div class="dashboard-sidebar">
+                <!-- <div class="dashboard-sidebar">
                   <nav class="sidebar-nav">
                     <a href="#dashboard" class="sidebar-link active" data-section="dashboard">
                       <div class="sidebar-icon">
@@ -123,14 +123,7 @@
                       </div>
                       <span>Security</span>
                     </a>
-                    <!-- <a href="#pay" class="sidebar-link" data-section="pay">
-                      <div class="sidebar-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                          <path d="M12 1l9.5 5.5v11L12 23l-9.5-5.5v-11L12 1zm0 2.311L4.5 7.653v8.694L12 20.689l7.5-4.342V7.653L12 3.311zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm0-2a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/>
-                        </svg>
-                      </div>
-                      <span>Pay</span>
-                    </a> -->
+
                     <a href="#payment-methods" class="sidebar-link" data-section="payment-methods">
                       <div class="sidebar-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
@@ -140,10 +133,59 @@
                       <span>Payment Methods</span>
                     </a>
                   </nav>
-                </div>
+                </div> -->
 
                 <!-- Main Content Area (Pink Box) -->
                 <div class="contact-form-block dashboard-content">
+                  <!-- Horizontal Navigation Bar -->
+                  <div style="background-color: #ffc2b0; padding: 15px 20px; border-radius: 8px; margin-bottom: 30px; border: 1px solid #000; overflow-x: auto;">
+                    <nav style="display: flex; justify-content: flex-start; align-items: center; gap: 10px; flex-wrap: wrap;">
+                      <a href="#dashboard" class="sidebar-link active" data-section="dashboard" style="display: flex; align-items: center; gap: 8px; padding: 10px 15px; border-radius: 6px; transition: all 0.3s; white-space: nowrap; text-decoration: none;  cursor: pointer;">
+                        <div style="width: 24px; height: 24px; display: flex; align-items: center; justify-content: center;">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="7" height="7"></rect>
+                            <rect x="14" y="3" width="7" height="7"></rect>
+                            <rect x="14" y="14" width="7" height="7"></rect>
+                            <rect x="3" y="14" width="7" height="7"></rect>
+                          </svg>
+                        </div>
+                        <span>Dashboard</span>
+                      </a>
+                      <a href="#orders" class="sidebar-link" data-section="orders" style="display: flex; align-items: center; gap: 8px; padding: 10px 15px; border-radius: 6px; transition: all 0.3s; white-space: nowrap; text-decoration: none;  cursor: pointer;">
+                        <div style="width: 24px; height: 24px; display: flex; align-items: center; justify-content: center;">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M4 6.414L.757 3.172l1.415-1.415L5.414 5h15.242a1 1 0 0 1 .958 1.287l-2.4 8a1 1 0 0 1-.958.713H6v2h11v2H5a1 1 0 0 1-1-1V6.414zM6 7v6h11.512l1.8-6H6zm-.5 16a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm12 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+                          </svg>
+                        </div>
+                        <span>Orders</span>
+                      </a>
+                      <a href="#settings" class="sidebar-link" data-section="settings" style="display: flex; align-items: center; gap: 8px; padding: 10px 15px; border-radius: 6px; transition: all 0.3s; white-space: nowrap; text-decoration: none;  cursor: pointer;">
+                        <div style="width: 24px; height: 24px; display: flex; align-items: center; justify-content: center;">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 1l9.5 5.5v11L12 23l-9.5-5.5v-11L12 1zm0 2.311L4.5 7.653v8.694L12 20.689l7.5-4.342V7.653L12 3.311zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm0-2a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/>
+                          </svg>
+                        </div>
+                        <span>Settings</span>
+                      </a>
+                      <a href="#security" class="sidebar-link" data-section="security" style="display: flex; align-items: center; gap: 8px; padding: 10px 15px; border-radius: 6px; transition: all 0.3s; white-space: nowrap; text-decoration: none; cursor: pointer;">
+                        <div style="width: 24px; height: 24px; display: flex; align-items: center; justify-content: center;">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 2.18l7 3.5V11c0 4.52-2.98 8.69-7 9.83-4.02-1.14-7-5.31-7-9.83V6.68l7-3.5zm3.5 8.32L11 10.5v5.5H9v-6h4.5z"/>
+                          </svg>
+                        </div>
+                        <span>Security</span>
+                      </a>
+                      <a href="#payment-methods" class="sidebar-link" data-section="payment-methods" style="display: flex; align-items: center; gap: 8px; padding: 10px 15px; border-radius: 6px; transition: all 0.3s; white-space: nowrap; text-decoration: none; cursor: pointer;">
+                        <div style="width: 24px; height: 24px; display: flex; align-items: center; justify-content: center;">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 2H5c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-3 8h2v6h-2V10z"/>
+                          </svg>
+                        </div>
+                        <span>Wallet</span>
+                      </a>
+                    </nav>
+                  </div>
+
                  <!-- Dashboard Section -->
                   <div id="dashboard" class="dashboard-section active">
                     <h2 class="section-title">Dashboard</h2>
