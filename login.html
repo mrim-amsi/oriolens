@@ -657,7 +657,7 @@
         if (isLoggedIn) {
           loginIcon.style.display = 'none';
           userNameSpan.style.display = 'inline';
-          userNameSpan.textContent = userName;
+          userNameSpan.textContent = `Hi, ${userName}`;
           loginDropdownContent.innerHTML = `
             <a href="#" class="login-dropdown-item" onclick="event.preventDefault(); console.log('Profile clicked');">Profile</a>
             <button class="login-dropdown-item" onclick="handleLogout();">Logout</button>
