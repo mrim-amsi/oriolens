@@ -88,7 +88,7 @@
       font-family: inherit;
       text-transform: uppercase;
       font-family: Realce, Impact, sans-serif;
-      font-size: 1.5rem;
+      font-size: 1.1rem;
     }
     
     .login-dropdown-item:hover {
@@ -659,7 +659,7 @@
           userNameSpan.style.display = 'inline';
           userNameSpan.textContent = `Hi, ${userName}`;
           loginDropdownContent.innerHTML = `
-            <a href="#" class="login-dropdown-item" onclick="event.preventDefault(); console.log('Profile clicked');">Profile</a>
+            <a href="index_user.html" class="login-dropdown-item" >Profile</a>
             <button class="login-dropdown-item" onclick="handleLogout();">Logout</button>
           `;
         } else {
