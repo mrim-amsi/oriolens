@@ -1,0 +1,1047 @@
+/* ============================================
+   DASHBOARD V2 - Contact Page Style
+   ============================================ */
+
+/* Dashboard Layout */
+.dashboard-layout {
+  display: grid;
+  grid-template-columns: 280px minmax(600px, 1fr);
+  gap: 2rem;
+  min-height: 600px;
+}
+
+/* Sidebar */
+.dashboard-sidebar {
+  border: 3px solid #000;
+  background-color: #ffc2b0;
+  border-radius: 2rem;
+  padding: 3rem 2rem;
+  height: fit-content;
+  /* position: sticky;
+  top: 120px; */
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  border-radius: 12px;
+  color: #000;
+  text-decoration: none;
+  font-family: Inter, sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.sidebar-link:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  color: #000;
+}
+
+.sidebar-link.active {
+  background-color: #000;
+  color: #fff;
+}
+
+.sidebar-icon {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Dashboard Content (Pink Box) */
+.dashboard-content {
+  min-height: 500px;
+}
+
+/* Dashboard Sections */
+.dashboard-section {
+  display: none;
+}
+
+.dashboard-section.active {
+  display: block;
+}
+
+.section-title {
+  font-family: 'Realce', sans-serif;
+  font-size: 2rem;
+  color: #000;
+  margin: 0;
+}
+
+/* Orders Table */
+.orders-table-wrapper {
+  overflow-x: auto;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.orders-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Inter, sans-serif;
+}
+
+.orders-table th {
+  background-color: #000;
+  color: #fff;
+  padding: 1rem 1.25rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.orders-table th:first-child {
+  border-radius: 12px 0 0 0;
+}
+
+.orders-table th:last-child {
+  border-radius: 0 12px 0 0;
+}
+
+.orders-table td {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  font-size: 0.95rem;
+}
+
+.orders-table tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+.orders-table tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.orders-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.orders-table tbody tr:last-child td:first-child {
+  border-radius: 0 0 0 12px;
+}
+
+.orders-table tbody tr:last-child td:last-child {
+  border-radius: 0 0 12px 0;
+}
+
+/* Order Status Badges */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.status-badge.delivered {
+  background-color: #22c55e;
+  color: #fff;
+}
+
+.status-badge.pending {
+  background-color: #fed97c;
+  color: #000;
+}
+
+.status-badge.cancelled {
+  background-color: #f04521;
+  color: #fff;
+}
+
+.status-badge::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: currentColor;
+}
+
+/* Action Buttons */
+.action-btn {
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-family: Inter, sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.action-btn:hover {
+  background: #fed97c;
+}
+
+.action-btn.delete {
+  background: transparent;
+  color: #f04521;
+  border: 1px solid #f04521;
+}
+
+.action-btn.delete:hover {
+  background: #fed97c;
+}
+
+/* Settings Form */
+.settings-form {
+  max-width: 100%;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 991px) {
+  .dashboard-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-sidebar {
+    position: relative;
+    top: 0;
+  }
+
+  .sidebar-nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .sidebar-link {
+    padding: 0.75rem 1rem;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .orders-table th,
+  .orders-table td {
+    padding: 0.75rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .sidebar-link span {
+    display: none;
+  }
+
+  .sidebar-link {
+    padding: 0.75rem;
+  }
+
+  .orders-table {
+    font-size: 0.8rem;
+  }
+
+  .orders-table th,
+  .orders-table td {
+    padding: 0.5rem 0.75rem;
+  }
+
+  .action-btn {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.75rem;
+  }
+}
+
+/* Animation */
+.dashboard-section {
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Toast Notification */
+.toast {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: #000;
+  color: #fff;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  font-family: Inter, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  transform: translateY(100px);
+  opacity: 0;
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.toast.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.toast.success {
+  background: #22c55e;
+}
+
+.toast.error {
+  background: #f04521;
+}
+/* Dashboard Css*/
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem;
+  border-radius: 16px;
+  color: #fff;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+}
+
+.stat-info h3 {
+  font-size: 2rem;
+  margin: 0;
+}
+
+.stat-info p {
+  margin: 0;
+  opacity: 0.9;
+  font-size: 0.95rem;
+}
+
+.stat-icon {
+  font-size: 2.2rem;
+  opacity: 0.85;
+}
+
+/* Colors */
+.stat-card.orders {
+    box-shadow: 0 10px 40px rgb(197 170 170);
+    background: linear-gradient(135deg, #6366f1, #4f46e5);
+}
+
+.stat-card.delivered {
+    box-shadow: 0 10px 40px rgb(197 170 170);
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+}
+
+.stat-card.shipping {
+    box-shadow: 0 10px 40px rgb(197 170 170);
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+
+.stat-card.payment {
+  box-shadow: 0 10px 40px rgb(197 170 170);
+  background: linear-gradient(135deg, #ec4899, #db2777);
+}
+
+/* ============================================
+   WALLET SECTION STYLES
+   ============================================ */
+
+.wallet-section {
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 2rem;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+
+.wallet-subtitle {
+  font-family: 'Realce', sans-serif;
+  font-size: 1.3rem;
+  color: #000;
+  margin: 0 0 1.5rem 0;
+  font-weight: 600;
+}
+
+/* Add Card Form */
+.add-card-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.form-row .form-group:first-child {
+  grid-column: 1 / -1;
+}
+
+.form-label {
+  display: block;
+  font-family: Inter, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #000;
+  margin-bottom: 0.5rem;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid #000;
+  border-radius: 8px;
+  font-family: Inter, sans-serif;
+  font-size: 0.95rem;
+  background-color: #fff;
+  transition: all 0.3s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #ffc2b0;
+  box-shadow: 0 0 0 3px rgba(255, 194, 176, 0.2);
+}
+
+.form-input::placeholder {
+  color: #999;
+}
+
+/* Cards Grid */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.card-ui {
+  background: linear-gradient(135deg, #ffc2b0 0%, #ff9a7f 100%);
+  border: 2px solid #000;
+  border-radius: 12px;
+  padding: 1.5rem;
+  min-height: 160px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #000;
+  font-family: Inter, sans-serif;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-ui:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+.card-ui::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), transparent);
+  pointer-events: none;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+.card-type {
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+}
+
+.card-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.card-delete-btn {
+  background: rgba(0, 0, 0, 0.2);
+  border: none;
+  color: #000;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.8rem;
+}
+
+.card-delete-btn:hover {
+  background: rgba(0, 0, 0, 0.4);
+  transform: rotate(90deg);
+}
+
+.card-middle {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  margin: 1rem 0;
+  position: relative;
+  z-index: 1;
+}
+
+.card-number {
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  font-weight: 700;
+  font-family: 'Courier New', monospace;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: relative;
+  z-index: 1;
+}
+
+.card-holder {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+}
+
+.card-holder-label {
+  opacity: 0.7;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  display: block;
+}
+
+.card-holder-name {
+  font-weight: 700;
+  display: block;
+}
+
+.card-expiry {
+  text-align: right;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.card-expiry-label {
+  opacity: 0.7;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  display: block;
+}
+
+.card-expiry-date {
+  font-weight: 700;
+  font-family: 'Courier New', monospace;
+  display: block;
+}
+
+/* No Cards Message */
+.no-cards-message {
+  display: none;
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+  font-style: italic;
+}
+
+.no-cards-message.show {
+  display: block;
+}
+
+.no-cards-message p {
+  margin: 0;
+  font-family: Inter, sans-serif;
+  font-size: 0.95rem;
+}
+
+/* ============================================
+   PAYMENT METHODS MODAL STYLES
+   ============================================ */
+
+.payment-modal-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 600px;
+  padding: 2rem;
+  width: 100%;
+}
+
+.payment-modal {
+  position: relative;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 550px;
+  padding: 2.5rem;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* Close Button */
+.payment-modal-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: none;
+  border: none;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #9ca3af;
+  transition: color 0.2s ease;
+}
+
+.payment-modal-close:hover {
+  color: #374151;
+}
+
+.payment-modal-close svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Modal Content */
+.payment-modal-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Payment Methods Sections */
+.payment-methods-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.payment-methods-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0;
+  letter-spacing: -0.3px;
+}
+
+.payment-methods-subtitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #374151;
+  margin: 0;
+}
+
+/* Cards List */
+.payment-cards-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* Individual Payment Card */
+.payment-card-item {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #ffffff;
+  transition: all 0.2s ease;
+}
+
+.payment-card-item:hover {
+  border-color: #d1d5db;
+  background: #f9fafb;
+}
+
+/* Card Icon */
+.payment-card-badge {
+  width: 40px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f3f4f6;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+.payment-card-badge svg {
+  width: 28px;
+  height: 20px;
+}
+
+/* Card Info */
+.payment-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.payment-card-number {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #1f2937;
+  letter-spacing: 1px;
+  font-family: 'Courier New', monospace;
+}
+
+.payment-card-type {
+  font-size: 0.75rem;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Card Actions */
+.payment-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-self: end;
+}
+
+.payment-default-label {
+  font-size: 0.8rem;
+  color: #9ca3af;
+  font-weight: 500;
+}
+
+.payment-set-default {
+  font-size: 0.85rem;
+  color: #3b82f6;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  font-weight: 500;
+}
+
+.payment-set-default:hover {
+  color: #2563eb;
+}
+
+.payment-delete-card {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #ef4444;
+  transition: color 0.2s ease;
+  padding: 0;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.payment-delete-card:hover {
+  color: #dc2626;
+}
+
+.payment-delete-card svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Empty State */
+.payment-empty-state {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: #9ca3af;
+  font-size: 0.95rem;
+}
+
+.payment-empty-state p {
+  margin: 0;
+}
+
+/* Add Payment Section */
+.payment-add-section {
+  border-top: 1px solid #e5e7eb;
+  padding-top: 1.5rem;
+}
+
+/* Payment Input Fields */
+.payment-input-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.payment-field-wrapper {
+  display: grid;
+  grid-template-columns: 40px 1fr auto auto;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 0.75rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  background: #ffffff;
+  transition: all 0.2s ease;
+}
+
+.payment-field-wrapper:focus-within {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.payment-field-icon {
+  color: #9ca3af;
+  flex-shrink: 0;
+}
+
+.payment-input {
+  border: none;
+  background: none;
+  outline: none;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 0.95rem;
+  color: #1f2937;
+  padding: 0;
+}
+
+.payment-input::placeholder {
+  color: #d1d5db;
+}
+
+.payment-card-num {
+  min-width: 0;
+  flex: 1;
+}
+
+.payment-expiry {
+  width: 75px;
+  text-align: center;
+}
+
+.payment-cvc {
+  width: 65px;
+  text-align: center;
+}
+
+/* Add Payment Button */
+.payment-add-btn {
+  width: 100%;
+  padding: 0.875rem 1.5rem;
+  background-color: #d1d5db;
+  color: #6b7280;
+  border: none;
+  border-radius: 6px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: not-allowed;
+  transition: all 0.2s ease;
+}
+
+.payment-add-btn:not(:disabled) {
+  background-color: #1f2937;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.payment-add-btn:not(:disabled):hover {
+  background-color: #111827;
+}
+
+/* Footer */
+.payment-modal-footer {
+  text-align: center;
+  padding: 1.5rem 0 0;
+  border-top: 1px solid #e5e7eb;
+}
+
+.payment-footer-text {
+  margin: 0 0 0.5rem 0;
+  font-size: 0.85rem;
+  color: #9ca3af;
+}
+
+.payment-footer-link {
+  font-size: 0.85rem;
+  color: #3b82f6;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.payment-footer-link:hover {
+  color: #2563eb;
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media screen and (max-width: 767px) {
+  .payment-modal {
+    padding: 1.5rem;
+  }
+
+  .payment-modal-wrapper {
+    padding: 1rem;
+    min-height: auto;
+  }
+
+  .payment-card-item {
+    grid-template-columns: auto 1fr;
+    gap: 0.75rem;
+  }
+
+  .payment-card-actions {
+    grid-column: 1 / -1;
+    margin-top: 0.5rem;
+    justify-self: auto;
+  }
+
+  .payment-field-wrapper {
+    grid-template-columns: 40px 1fr;
+    gap: 0.5rem;
+  }
+
+  .payment-expiry,
+  .payment-cvc {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .payment-modal {
+    padding: 1.25rem;
+  }
+
+  .payment-modal-close {
+    top: 1rem;
+    right: 1rem;
+  }
+
+  .payment-methods-title {
+    font-size: 1.25rem;
+  }
+
+  .payment-methods-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .payment-card-item {
+    padding: 0.75rem;
+  }
+
+  .payment-card-number {
+    font-size: 0.85rem;
+  }
+
+  .payment-add-btn {
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Responsive */
+@media screen and (max-width: 991px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .form-row .form-group:first-child {
+    grid-column: auto;
+  }
+
+  .cards-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .wallet-section {
+    padding: 1.5rem;
+  }
+
+  .wallet-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card-ui {
+    min-height: 140px;
+    padding: 1rem;
+  }
+
+  .card-number {
+    font-size: 1rem;
+    letter-spacing: 1.5px;
+  }
+
+  .card-holder-name,
+  .card-expiry-date {
+    font-size: 0.8rem;
+  }
+}
+
+
