@@ -1,7 +1,86 @@
 /* ============================================
    DASHBOARD V2 - Contact Page Style
    ============================================ */
-
+    /* Login Icon Styles - Matching Cart Icon */
+    .login-item {
+      z-index: 99;
+      position: relative;
+    }
+    
+    .login-wrapper {
+      position: relative;
+    }
+    
+    .login-button {
+      background-color: #0000;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      transition: opacity 0.35s;
+    }
+    
+    .login-button:hover {
+      opacity: 0.7;
+    }
+    
+    .login-icon {
+      color: #000;
+      width: 26px;
+      height: 26px;
+      transition: all 0.35s;
+    }
+    
+    .user-name {
+      font-size: 1rem;
+      color: var(--black);
+      font-weight: 400;
+      font-family: inherit;
+    }
+    
+    .login-dropdown {
+      position: absolute;
+      top: calc(100% + 0.5rem);
+      right: 0;
+      background-color: #ffc2b0;
+      border: 3px solid var(--black);
+      border-radius: 1rem;
+      min-width: 180px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      overflow: hidden;
+    }
+    
+    .login-dropdown-content {
+      padding: 0.5rem 0;
+    }
+    
+    .login-dropdown-item {
+      display: block;
+      padding: 0.75rem 1rem;
+      color: var(--black);
+      text-decoration: none;
+      font-size: 0.875rem;
+      transition: background-color 0.35s;
+      border: none;
+      background: none;
+      width: 100%;
+      text-align: left;
+      cursor: pointer;
+      font-family: inherit;
+      text-transform: uppercase;
+      font-family: Realce, Impact, sans-serif;
+      font-size: 1.1rem;
+    }
+    
+    .login-dropdown-item:hover {
+      background-color: #f9a389;
+    }
+    
+    .login-dropdown-item:first-child {
+      border-top: none;
+    }
 /* Dashboard Layout */
 .dashboard-layout {
   /* display: grid; */
