@@ -996,6 +996,9 @@
 
     // Add to Cart functionality
     document.addEventListener('DOMContentLoaded', function() {
+      // Initialize default cart item if cart is empty
+      initializeDefaultCartItem();
+      
       const addToCartBtn = document.querySelector('.w-commerce-commerceaddtocartbutton');
       
       if (addToCartBtn) {
@@ -1055,6 +1058,25 @@
       // Setup cart display functionality
       setupCartDisplay();
     });
+    
+    // Initialize default cart item if cart is empty
+    function initializeDefaultCartItem() {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      
+      // If cart is empty, add a default item
+      if (cart.length === 0) {
+        const defaultItem = {
+          id: 1001,
+          name: 'Lamb Burger',
+          price: '$9.90',
+          quantity: 1,
+          image: 'images/lamb-burger.png'
+        };
+        
+        cart.push(defaultItem);
+        localStorage.setItem('cart', JSON.stringify(cart));
+      }
+    }
     
     // Setup cart display
     function setupCartDisplay() {
