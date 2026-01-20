@@ -936,7 +936,7 @@
       
       // Close cart when clicking outside
       document.addEventListener('click', function(e) {
-        if (cartContainer && cartContainer.style.display === 'block') {
+        if (cartContainer && cartContainer.style.display === 'flex') {
           if (!e.target.closest('.w-commerce-commercecartwrapper')) {
             cartContainer.style.display = 'none';
           }
@@ -961,13 +961,13 @@
       cartList.innerHTML = '';
       
       if (cart.length === 0) {
-        emptyState.style.display = 'block';
+        emptyState.style.display = 'flex';
         cartForm.style.display = 'none';
         return;
       }
       
       emptyState.style.display = 'none';
-      cartForm.style.display = 'block';
+      cartForm.style.display = 'flex';
       
       let total = 0;
       
