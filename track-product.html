@@ -214,10 +214,53 @@
       color: #999;
     }
     
+    @media (max-width: 1024px) {
+      .tracker-card {
+        padding: 30px;
+        width: 95%;
+        box-sizing: border-box;
+      }
+      
+      .progress-dot {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+      }
+      
+      .progress-label {
+        font-size: 11px;
+        min-width: 80px;
+      }
+      
+      .progress-item:not(:last-child)::after {
+        top: 20px;
+      }
+      
+      .tracking-steps {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 15px;
+      }
+      
+      .step-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+        margin-bottom: 12px;
+      }
+      
+      .step-title {
+        font-size: 12px;
+      }
+      
+      .step-description {
+        font-size: 11px;
+      }
+    }
+
     @media (max-width: 768px) {
       .tracker-header {
         flex-direction: column;
-        gap: 20px;
+        gap: 15px;
       }
       
       .tracker-shipping-info {
@@ -227,6 +270,58 @@
       .tracker-card {
         padding: 20px;
         width: 95%;
+        box-sizing: border-box;
+        max-width: 100%;
+      }
+      
+      .invoice-label {
+        font-size: 11px;
+      }
+      
+      .invoice-number {
+        font-size: 20px;
+      }
+      
+      .shipping-date {
+        font-size: 12px;
+      }
+      
+      .tracking-number {
+        font-size: 12px;
+      }
+      
+      .progress-container {
+        margin: 5px 0;
+        overflow: visible;
+      }
+      
+      .progress-line-wrapper {
+        margin-bottom: 40px;
+        overflow: visible;
+      }
+      
+      .progress-item {
+        min-width: 0;
+      }
+      
+      .progress-dot {
+        width: 36px;
+        height: 36px;
+        font-size: 16px;
+      }
+      
+      .progress-label {
+        font-size: 10px;
+        min-width: 70px;
+        margin-top: 12px;
+        min-height: 42px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .progress-item:not(:last-child)::after {
+        top: 18px;
       }
       
       .tracking-steps {
@@ -234,8 +329,114 @@
         gap: 15px;
       }
       
-      .progress-label {
+      .step-icon {
+        width: 45px;
+        height: 45px;
+        font-size: 20px;
+        margin-bottom: 10px;
+      }
+      
+      .step-title {
         font-size: 11px;
+      }
+      
+      .step-description {
+        font-size: 10px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .tracker-card {
+        padding: 15px;
+        width: 98%;
+        margin: 0 auto 20px;
+      }
+      
+      .tracker-header {
+        gap: 12px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid #f0f0f0;
+      }
+      
+      .invoice-label {
+        font-size: 10px;
+      }
+      
+      .invoice-number {
+        font-size: 16px;
+      }
+      
+      .shipping-date {
+        font-size: 11px;
+        margin-bottom: 3px;
+      }
+      
+      .tracking-number {
+        font-size: 11px;
+      }
+      
+      .progress-container {
+        margin: 5px 0;
+        overflow: visible;
+      }
+      
+      .progress-line-wrapper {
+        margin-bottom: 30px;
+        display: flex;
+        align-items: center;
+        gap: 0;
+        position: relative;
+      }
+      
+      .progress-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex: 1;
+        position: relative;
+        z-index: 3;
+        min-width: 0;
+      }
+      
+      .progress-item:not(:last-child)::after {
+        top: 16px;
+        height: 2px;
+      }
+      
+      .progress-dot {
+        width: 32px;
+        height: 32px;
+        font-size: 14px;
+      }
+      
+      .progress-label {
+        font-size: 9px;
+        min-width: 60px;
+        margin-top: 10px;
+        min-height: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .tracking-steps {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+      
+      .step-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+        margin-bottom: 8px;
+      }
+      
+      .step-title {
+        font-size: 10px;
+      }
+      
+      .step-description {
+        font-size: 9px;
       }
     }
   </style>
