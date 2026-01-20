@@ -157,7 +157,7 @@ function setupSettingsForm() {
 function viewOrder(orderId) {
   const order = ordersData.find(o => o.id === orderId);
   if (order) {
-    showToast(`Viewing order: ${order.name}`, 'success');
+    window.location.href = 'track-product.html';
   }
 }
 
@@ -199,7 +199,7 @@ function showToast(message, type = 'success') {
 function viewOrder(orderId) {
   const order = ordersData.find(o => o.id === orderId);
   if (order) {
-    showToast(`Viewing order: ${order.name}`, 'success');
+    window.location.href = 'track-product.html';
   }
 }
 

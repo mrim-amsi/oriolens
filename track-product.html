@@ -111,6 +111,17 @@
     .progress-item.inactive:not(:last-child)::after {
       background-color: #e5e5e5;
     }
+
+    /* In Transit state - gray line and black dot with gray background */
+    .progress-item.in-transit:not(:last-child)::after {
+      background-color: #e5e5e5;
+    }
+
+    .progress-item.in-transit .progress-dot {
+      background-color: #e5e5e5;
+      color: #333;
+      font-weight: bold;
+    }
     
     .progress-line {
       position: absolute;
@@ -454,7 +465,7 @@
                       <div class="progress-dot">✓</div>
                       <div class="progress-label">Order Shipped</div>
                     </div>
-                    <div class="progress-item">
+                    <div class="progress-item in-transit">
                       <div class="progress-dot">✓</div>
                       <div class="progress-label">In Transit</div>
                     </div>
