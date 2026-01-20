@@ -993,6 +993,258 @@
       // Initialize on page load
       initLoginUI();
     })();
+
+    // Add to Cart functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const addToCartBtn = document.querySelector('.w-commerce-commerceaddtocartbutton');
+      
+      if (addToCartBtn) {
+        addToCartBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          // Get product details
+          const productName = document.querySelector('.product-name-text')?.textContent || 'Lamb Burger';
+          const productPrice = document.querySelector('.product-price-text')?.textContent || '$9.90';
+          const quantity = document.querySelector('.w-commerce-commerceaddtocartquantityinput')?.value || '1';
+          const productImage = document.querySelector('.product-image')?.src || 'images/lamb-burger.png';
+          
+          // Create cart item object
+          const cartItem = {
+            id: Date.now(),
+            name: productName,
+            price: productPrice,
+            quantity: parseInt(quantity),
+            image: productImage
+          };
+          
+          // Get existing cart from localStorage
+          let cart = JSON.parse(localStorage.getItem('cart')) || [];
+          
+          // Check if product already exists in cart
+          const existingItem = cart.find(item => item.name === cartItem.name);
+          
+          if (existingItem) {
+            existingItem.quantity += parseInt(quantity);
+          } else {
+            cart.push(cartItem);
+          }
+          
+          // Save cart to localStorage
+          localStorage.setItem('cart', JSON.stringify(cart));
+          
+          // Update cart count in navbar
+          updateCartCount();
+          
+          // Open cart modal
+          const cartOpenLink = document.querySelector('.w-commerce-commercecartopenlink');
+          if (cartOpenLink) {
+            cartOpenLink.click();
+          }
+          
+          // Show success message
+          showToast(`${productName} added to cart!`, 'success');
+          
+          // Reset quantity input
+          document.querySelector('.w-commerce-commerceaddtocartquantityinput').value = '1';
+        });
+      }
+      
+      // Update cart count on page load
+      updateCartCount();
+      
+      // Setup cart display functionality
+      setupCartDisplay();
+    });
+    
+    // Setup cart display
+    function setupCartDisplay() {
+      const cartOpenLink = document.querySelector('.w-commerce-commercecartopenlink');
+      const cartCloseLink = document.querySelector('.w-commerce-commercecartcloselink');
+      const cartContainer = document.querySelector('.w-commerce-commercecartcontainerwrapper');
+      
+      if (cartOpenLink) {
+        cartOpenLink.addEventListener('click', function(e) {
+          e.preventDefault();
+          displayCartItems();
+          if (cartContainer) {
+            cartContainer.style.display = 'flex';
+          }
+        });
+      }
+      
+      if (cartCloseLink) {
+        cartCloseLink.addEventListener('click', function(e) {
+          e.preventDefault();
+          if (cartContainer) {
+            cartContainer.style.display = 'none';
+          }
+        });
+      }
+      
+      // Close cart when clicking outside
+      document.addEventListener('click', function(e) {
+        if (cartContainer && cartContainer.style.display === 'flex') {
+          if (!e.target.closest('.w-commerce-commercecartwrapper')) {
+            cartContainer.style.display = 'none';
+          }
+        }
+      });
+    }
+    
+    // Display cart items
+    function displayCartItems() {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const emptyState = document.querySelector('.w-commerce-commercecartemptystate');
+      const cartForm = document.querySelector('.w-commerce-commercecartform');
+      const cartList = document.querySelector('.w-commerce-commercecartlist');
+      const cartFooter = document.querySelector('.w-commerce-commercecartfooter');
+      
+      if (!cartList) {
+        console.error('Cart list element not found');
+        return;
+      }
+      
+      // Clear existing cart items
+      cartList.innerHTML = '';
+      
+      if (cart.length === 0) {
+        emptyState.style.display = 'flex';
+        cartForm.style.display = 'none';
+        return;
+      }
+      
+      emptyState.style.display = 'none';
+      cartForm.style.display = 'flex';
+      
+      let total = 0;
+      
+      cart.forEach((item, index) => {
+        const price = parseFloat(item.price.replace('$', ''));
+        const itemTotal = price * item.quantity;
+        total += itemTotal;
+        
+        const cartItemDiv = document.createElement('div');
+        cartItemDiv.className = 'w-commerce-commercecartitem cart-item-custom';
+        cartItemDiv.style.cssText = `
+          padding: 12px 0;
+          border-bottom: 1px solid #e5e5e5;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 15px;
+        `;
+        
+        cartItemDiv.innerHTML = `
+          <div style="display: flex; gap: 12px; flex: 1; align-items: center;">
+            <img src="${item.image}" alt="${item.name}" style="width: 60px; height: 60px; object-fit: cover; border-radius: 4px;">
+            <div style="flex: 1;">
+              <div style="font-weight: 600; margin-bottom: 4px;">${item.name}</div>
+              <div style="color: #666; font-size: 14px;">${item.price} x ${item.quantity}</div>
+            </div>
+          </div>
+          <div style="text-align: right;">
+            <div style="font-weight: 600; margin-bottom: 4px;">$${itemTotal.toFixed(2)}</div>
+            <button onclick="removeFromCart(${index})" style="
+              background: none;
+              border: none;
+              color: #f04521;
+              cursor: pointer;
+              font-size: 12px;
+              text-decoration: underline;
+            ">Remove</button>
+          </div>
+        `;
+        
+        cartList.appendChild(cartItemDiv);
+      });
+      
+      // Update total
+      const totalElement = document.querySelector('.w-commerce-commercecartordervalue');
+      if (totalElement) {
+        totalElement.textContent = '$' + total.toFixed(2);
+      }
+    }
+    
+    // Remove from cart
+    window.removeFromCart = function(index) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      cart.splice(index, 1);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      updateCartCount();
+      displayCartItems();
+      showToast('Item removed from cart', 'success');
+    }
+    
+    // Update cart count on page load
+    
+    // Update cart count in navbar
+    function updateCartCount() {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
+      
+      // Update all cart quantity elements
+      document.querySelectorAll('.w-commerce-commercecartopenlinkcount').forEach(element => {
+        element.textContent = cartCount;
+      });
+    }
+    
+    // Show toast notification
+    function showToast(message, type = 'success') {
+      const existingToast = document.querySelector('.custom-toast');
+      if (existingToast) {
+        existingToast.remove();
+      }
+      
+      const toast = document.createElement('div');
+      toast.className = `custom-toast ${type}`;
+      toast.textContent = message;
+      toast.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        padding: 15px 20px;
+        background-color: ${type === 'success' ? '#4CAF50' : '#f44336'};
+        color: white;
+        border-radius: 4px;
+        z-index: 9999;
+        font-weight: 500;
+        animation: slideIn 0.3s ease-in;
+      `;
+      
+      document.body.appendChild(toast);
+      
+      setTimeout(() => {
+        toast.style.animation = 'slideOut 0.3s ease-out';
+        setTimeout(() => toast.remove(), 300);
+      }, 3000);
+    }
+    
+    // Add CSS animations
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes slideIn {
+        from {
+          transform: translateX(400px);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+      
+      @keyframes slideOut {
+        from {
+          transform: translateX(0);
+          opacity: 1;
+        }
+        to {
+          transform: translateX(400px);
+          opacity: 0;
+        }
+      }
+    `;
+    document.head.appendChild(style);
   </script>
 </body>
 </html>
