@@ -58,9 +58,9 @@
                             </div>
                             <div>
                               <div data-node-type="commerce-cart-quick-checkout-actions" class="web-payment">
-                                <a data-node-type="commerce-cart-apple-pay-button" role="button" aria-label="Apple Pay" aria-haspopup="dialog" style="background-image:-webkit-named-image(apple-pay-logo-white);background-size:100% 50%;background-position:50% 50%;background-repeat:no-repeat" class="w-commerce-commercecartapplepaybutton apple-pay" tabindex="0">
+                                <!-- <a data-node-type="commerce-cart-apple-pay-button" role="button" aria-label="Apple Pay" aria-haspopup="dialog" style="background-image:-webkit-named-image(apple-pay-logo-white);background-size:100% 50%;background-position:50% 50%;background-repeat:no-repeat" class="w-commerce-commercecartapplepaybutton apple-pay" tabindex="0">
                                   <div></div>
-                                </a>
+                                </a> -->
                                 <a data-node-type="commerce-cart-quick-checkout-button" role="button" tabindex="0" aria-haspopup="dialog" style="display:none" class="w-commerce-commercecartquickcheckoutbutton"><svg class="w-commerce-commercequickcheckoutgoogleicon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewbox="0 0 16 16">
                                     <defs>
                                       <polygon id="google-mark-a" points="0 .329 3.494 .329 3.494 7.649 0 7.649"></polygon>
@@ -563,7 +563,7 @@
                   <div data-w-id="3306a82a-07b9-61e3-9043-7486369f417c" role="listitem" class="product-list-item w-dyn-item">
                     <a data-w-id="3306a82a-07b9-61e3-9043-7486369f417d" href="#" class="product-link w-inline-block">
                       <div class="product-image-wrapper">
-                        <div class="product-price">$2.50</div><img loading="lazy" src="images/ic.png" alt="" class="product-image"><img src="images/emoji.svg" loading="lazy" data-w-id="3306a82a-07b9-61e3-9043-7486369f4181" alt="Emoji – Bitejoy Webflow Template " class="emoji">
+                        <div class="product-price">$2.50</div><img loading="lazy" src="images/Frame-1_1Frame-1.webp" alt="" class="product-image"><img src="images/emoji.svg" loading="lazy" data-w-id="3306a82a-07b9-61e3-9043-7486369f4181" alt="Emoji – Bitejoy Webflow Template " class="emoji">
                       </div>
                       <div class="product-name"></div>
                     </a>
@@ -904,7 +904,131 @@
       
       // Update cart count on page load
       updateCartCount();
+      
+      // Setup cart display functionality
+      setupCartDisplay();
     });
+    
+    // Setup cart display
+    function setupCartDisplay() {
+      const cartOpenLink = document.querySelector('.w-commerce-commercecartopenlink');
+      const cartCloseLink = document.querySelector('.w-commerce-commercecartcloselink');
+      const cartContainer = document.querySelector('.w-commerce-commercecartcontainerwrapper');
+      
+      if (cartOpenLink) {
+        cartOpenLink.addEventListener('click', function(e) {
+          e.preventDefault();
+          displayCartItems();
+          if (cartContainer) {
+            cartContainer.style.display = 'block';
+          }
+        });
+      }
+      
+      if (cartCloseLink) {
+        cartCloseLink.addEventListener('click', function(e) {
+          e.preventDefault();
+          if (cartContainer) {
+            cartContainer.style.display = 'none';
+          }
+        });
+      }
+      
+      // Close cart when clicking outside
+      document.addEventListener('click', function(e) {
+        if (cartContainer && cartContainer.style.display === 'block') {
+          if (!e.target.closest('.w-commerce-commercecartwrapper')) {
+            cartContainer.style.display = 'none';
+          }
+        }
+      });
+    }
+    
+    // Display cart items
+    function displayCartItems() {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const emptyState = document.querySelector('.w-commerce-commercecartemptystate');
+      const cartForm = document.querySelector('.w-commerce-commercecartform');
+      const cartList = document.querySelector('.w-commerce-commercecartlist');
+      const cartFooter = document.querySelector('.w-commerce-commercecartfooter');
+      
+      if (!cartList) {
+        console.error('Cart list element not found');
+        return;
+      }
+      
+      // Clear existing cart items
+      cartList.innerHTML = '';
+      
+      if (cart.length === 0) {
+        emptyState.style.display = 'block';
+        cartForm.style.display = 'none';
+        return;
+      }
+      
+      emptyState.style.display = 'none';
+      cartForm.style.display = 'block';
+      
+      let total = 0;
+      
+      cart.forEach((item, index) => {
+        const price = parseFloat(item.price.replace('$', ''));
+        const itemTotal = price * item.quantity;
+        total += itemTotal;
+        
+        const cartItemDiv = document.createElement('div');
+        cartItemDiv.className = 'w-commerce-commercecartitem cart-item-custom';
+        cartItemDiv.style.cssText = `
+          padding: 12px 0;
+          border-bottom: 1px solid #e5e5e5;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 15px;
+        `;
+        
+        cartItemDiv.innerHTML = `
+          <div style="display: flex; gap: 12px; flex: 1; align-items: center;">
+            <img src="${item.image}" alt="${item.name}" style="width: 60px; height: 60px; object-fit: cover; border-radius: 4px;">
+            <div style="flex: 1;">
+              <div style="font-weight: 600; margin-bottom: 4px;">${item.name}</div>
+              <div style="color: #666; font-size: 14px;">${item.price} x ${item.quantity}</div>
+            </div>
+          </div>
+          <div style="text-align: right;">
+            <div style="font-weight: 600; margin-bottom: 4px;">$${itemTotal.toFixed(2)}</div>
+            <button onclick="removeFromCart(${index})" style="
+              background: none;
+              border: none;
+              color: #f04521;
+              cursor: pointer;
+              font-size: 12px;
+              text-decoration: underline;
+            ">Remove</button>
+          </div>
+        `;
+        
+        cartList.appendChild(cartItemDiv);
+      });
+      
+      // Update total
+      const totalElement = document.querySelector('.w-commerce-commercecartordervalue');
+      if (totalElement) {
+        totalElement.textContent = '$' + total.toFixed(2);
+      }
+    }
+    
+    // Remove from cart
+    window.removeFromCart = function(index) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      cart.splice(index, 1);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      updateCartCount();
+      displayCartItems();
+      showToast('Item removed from cart', 'success');
+    }
+    
+    // Update cart count on page load
     
     // Update cart count in navbar
     function updateCartCount() {
