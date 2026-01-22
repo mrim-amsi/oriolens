@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Order Success – Bitejoy</title>
+  <meta content="Your order has been placed successfully!" name="description">
+  <meta content="Order Success – Bitejoy" property="og:title">
+  <meta content="Your order has been placed successfully!" property="og:description">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <link href="css/normalize.css" rel="stylesheet" type="text/css">
+  <link href="css/webflow.css" rel="stylesheet" type="text/css">
+  <link href="css/restaurant-orionlens.webflow.css" rel="stylesheet" type="text/css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+    background-color: var(--yellow);
+          min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .success-container {
+      text-align: center;
+      background: white;
+      padding: 60px 40px;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+      max-width: 500px;
+      width: 100%;
+      animation: slideUp 0.6s ease-out;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Success Icon */
+    .success-icon-wrapper {
+      position: relative;
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 30px;
+    }
+
+    .success-circle {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #FF6B35 0%, #FF8A50 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 15px 40px rgba(255, 107, 53, 0.25);
+      animation: scaleIn 0.5s ease-out;
+      position: relative;
+      z-index: 2;
+    }
+
+    @keyframes scaleIn {
+      from {
+        transform: scale(0.5);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .checkmark {
+      font-size: 60px;
+      color: white;
+      font-weight: bold;
+      animation: checkmarkAnimation 0.6s ease-out 0.3s both;
+    }
+
+    @keyframes checkmarkAnimation {
+      0% {
+        transform: scale(0) rotate(-45deg);
+        opacity: 0;
+      }
+      50% {
+        transform: scale(1.2) rotate(10deg);
+      }
+      100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+      }
+    }
+
+    /* Confetti */
+    .confetti {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #FF6B35, #FFB84D);
+      animation: confetti-fall 2.5s ease-out forwards;
+    }
+
+    @keyframes confetti-fall {
+      to {
+        transform: translateY(300px) translateX(var(--tx)) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* Typography */
+    .success-title {
+      font-size: 32px;
+      font-weight: 700;
+      color: #000;
+      margin-bottom: 15px;
+      font-family: 'Realce', 'Impact', sans-serif;
+    }
+
+    .success-description {
+      font-size: 16px;
+      color: #999;
+      line-height: 1.6;
+      margin-bottom: 40px;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Buttons Container */
+    .success-buttons {
+      display: flex;
+      gap: 15px;
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .success-button {
+      padding: 14px 32px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .success-button.primary {
+      background: linear-gradient(135deg, #FF6B35 0%, #FF8A50 100%);
+      color: white;
+      box-shadow: 0 10px 25px rgba(255, 107, 53, 0.2);
+    }
+
+    .success-button.primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 35px rgba(255, 107, 53, 0.3);
+    }
+
+    .success-button.secondary {
+      background: white;
+      color: #000;
+      border: 2px solid #ddd;
+    }
+
+    .success-button.secondary:hover {
+      border-color: #999;
+      background-color: #f9f9f9;
+    }
+
+    @media (min-width: 600px) {
+      .success-buttons {
+        flex-direction: row;
+      }
+
+      .success-button {
+        flex: 1;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .success-container {
+        padding: 40px 25px;
+      }
+
+      .success-title {
+        font-size: 26px;
+      }
+
+      .success-description {
+        font-size: 14px;
+      }
+    }
+
+    /* Order Number Display */
+    .order-details {
+      background-color: #f9f9f9;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 30px;
+      border-left: 4px solid #FF6B35;
+    }
+
+    .order-label {
+      font-size: 12px;
+      color: #999;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 5px;
+    }
+
+    .order-number {
+      font-size: 20px;
+      font-weight: 700;
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+  <div class="success-container">
+    <!-- Success Icon with Confetti -->
+    <div class="success-icon-wrapper" id="confetti-container">
+      <div class="success-circle">
+        <div class="checkmark">✓</div>
+      </div>
+    </div>
+
+    <!-- Order Details -->
+    <div class="order-details">
+      <div class="order-label">Order Number</div>
+      <div class="order-number" id="order-number">#2024001</div>
+    </div>
+
+    <!-- Title -->
+    <h1 class="success-title">Thank you for ordering!</h1>
+
+    <!-- Description -->
+    <p class="success-description">
+      Your order has been confirmed. You will receive an email confirmation shortly with tracking information and delivery details.
+    </p>
+
+    <!-- Buttons -->
+    <div class="success-buttons">
+      <a href="invoice.html" class="success-button primary">View Invoice</a>
+      <a href="track-product.html" class="success-button secondary">Track Order</a>
+    </div>
+  </div>
+
+  <script>
+    // Generate random order number
+    function generateOrderNumber() {
+      const randomNum = Math.floor(Math.random() * 900000) + 100000;
+      document.getElementById('order-number').textContent = '#' + randomNum;
+    }
+
+    // Create confetti effect
+    function createConfetti() {
+      const container = document.getElementById('confetti-container');
+      const confettiCount = 12;
+
+      for (let i = 0; i < confettiCount; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+
+        const angle = (Math.PI * 2 * i) / confettiCount;
+        const tx = Math.cos(angle) * 150 + (Math.random() - 0.5) * 80;
+        const delay = Math.random() * 0.3;
+
+        confetti.style.setProperty('--tx', `${tx}px`);
+        confetti.style.left = '60px';
+        confetti.style.top = '60px';
+        confetti.style.animationDelay = `${delay}s`;
+
+        container.appendChild(confetti);
+      }
+    }
+
+    // Initialize on load
+    document.addEventListener('DOMContentLoaded', function() {
+      generateOrderNumber();
+      createConfetti();
+    });
+  </script>
+</body>
+</html>
