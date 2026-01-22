@@ -2807,7 +2807,7 @@ blockquote {
 }
 
 .nav-menu-content {
-  grid-column-gap: 2.5rem;
+  grid-column-gap: 1.7rem;
   grid-row-gap: 2.5rem;
   flex-flow: row;
   justify-content: center;
