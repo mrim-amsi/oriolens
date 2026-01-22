@@ -1009,26 +1009,31 @@
           const quantity = document.querySelector('.w-commerce-commerceaddtocartquantityinput')?.value || '1';
           const productImage = document.querySelector('.product-image')?.src || 'images/lamb-burger.png';
           
+          // Get customization details
+          const breadType = document.querySelector('#bread-type')?.value || '';
+          const selectedIngredients = Array.from(document.querySelectorAll('input[name="ingredients"]:checked')).map(cb => {
+            const label = cb.nextElementSibling?.textContent || cb.value;
+            return label.trim();
+          });
+          const specialInstructions = document.querySelector('#special-instructions')?.value || '';
+          
           // Create cart item object
           const cartItem = {
             id: Date.now(),
             name: productName,
             price: productPrice,
             quantity: parseInt(quantity),
-            image: productImage
+            image: productImage,
+            breadType: breadType,
+            ingredients: selectedIngredients,
+            specialInstructions: specialInstructions
           };
           
           // Get existing cart from localStorage
           let cart = JSON.parse(localStorage.getItem('cart')) || [];
           
-          // Check if product already exists in cart
-          const existingItem = cart.find(item => item.name === cartItem.name);
-          
-          if (existingItem) {
-            existingItem.quantity += parseInt(quantity);
-          } else {
-            cart.push(cartItem);
-          }
+          // Add item to cart (don't merge, keep separate for different customizations)
+          cart.push(cartItem);
           
           // Save cart to localStorage
           localStorage.setItem('cart', JSON.stringify(cart));
@@ -1135,12 +1140,27 @@
           gap: 15px;
         `;
         
+        // Build extras HTML
+        let extrasHTML = '';
+        if (item.breadType) {
+          extrasHTML += `<div style="color: #666; font-size: 0.85rem; margin-top: 4px;">Bread: ${item.breadType}</div>`;
+        }
+        if (item.ingredients && item.ingredients.length > 0) {
+          item.ingredients.forEach(ingredient => {
+            extrasHTML += `<div style="color: #666; font-size: 0.85rem;">${ingredient}</div>`;
+          });
+        }
+        if (item.specialInstructions) {
+          extrasHTML += `<div style="color: #999; font-size: 0.85rem; font-style: italic; margin-top: 4px;">"${item.specialInstructions}"</div>`;
+        }
+        
         cartItemDiv.innerHTML = `
-          <div style="display: flex; gap: 12px; flex: 1; align-items: center;">
+          <div style="display: flex; gap: 12px; flex: 1; align-items: flex-start;">
             <img src="${item.image}" alt="${item.name}" style="width: 60px; height: 60px; object-fit: cover; border-radius: 4px;">
             <div style="flex: 1;">
               <div style="font-weight: 600; margin-bottom: 4px;">${item.name}</div>
-              <div style="color: #666; font-size: 14px;">${item.price} x ${item.quantity}</div>
+              ${extrasHTML}
+              <div style="color: #666; font-size: 14px; margin-top: 6px;">${item.price} x ${item.quantity}</div>
             </div>
           </div>
           <div style="text-align: right;">
