@@ -1023,7 +1023,10 @@
             name: productName,
             price: productPrice,
             quantity: parseInt(quantity),
-            image: productImage
+            image: productImage,
+            breadType: breadType,
+            ingredients: selectedIngredients,
+            specialInstructions: specialInstructions
           };
           
           // Get existing cart from localStorage
@@ -1076,7 +1079,10 @@
           name: 'Lamb Burger',
           price: '$9.90',
           quantity: 1,
-          image: 'images/lamb-burger.png'
+          image: 'images/lamb-burger.png',
+          breadType: 'Whole Wheat',
+          ingredients: ['Lettuce', 'Tomato', 'Onion'],
+          specialInstructions: 'No pickles'
         };
         
         cart.push(defaultItem);
@@ -1161,12 +1167,26 @@
           align-items: center;
           gap: 15px;
         `;
-        
+                // Build extras HTML
+        let extrasHTML = '';
+        if (item.breadType) {
+          extrasHTML += `<div style="color: #666; font-size: 0.85rem; margin-top: 4px;">Bread: ${item.breadType}</div>`;
+        }
+        if (item.ingredients && item.ingredients.length > 0) {
+          item.ingredients.forEach(ingredient => {
+            extrasHTML += `<div style="color: #666; font-size: 0.85rem;">${ingredient}</div>`;
+          });
+        }
+        if (item.specialInstructions) {
+          extrasHTML += `<div style="color: #999; font-size: 0.85rem; font-style: italic; margin-top: 4px;">"${item.specialInstructions}"</div>`;
+        }
+
         cartItemDiv.innerHTML = `
           <div style="display: flex; gap: 12px; flex: 1; align-items: center;">
             <img src="${item.image}" alt="${item.name}" style="width: 60px; height: 60px; object-fit: cover; border-radius: 4px;">
             <div style="flex: 1;">
               <div style="font-weight: 600; margin-bottom: 4px;">${item.name}</div>
+                 ${extrasHTML}
               <div style="color: #666; font-size: 14px;">${item.price} x ${item.quantity}</div>
             </div>
           </div>
